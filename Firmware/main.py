@@ -19,7 +19,7 @@ def fileDownload(fileName, urlV):
     fileExtension=urlValues[len(urlValues)-1]
     url = urlV
     r = requests.get(url, allow_redirects=True)
-    open(fileName+'.'+fileExtension, 'wb').write(r.content)
+    open(fileName, 'wb').write(r.content)
     print('file downloaded')
 
 def callAPI():
@@ -32,14 +32,39 @@ def callAPI():
     # from url in data
     data_json = json.loads(response.read())
     return data_json
+def createDownloadedFilesList(fN, id):
+    print('updating list of files')
+    k=open('filesList.txt','a')
+    k.write(fN+','+id+'\n')
+    k.close()
+    print('updated list of files')
+def readDownloadedFiles():
+    try:
+        g=open('filesList.txt','r')
+        mm=g.read()
+        g.close()
+        kk=mm.split('\n')
+        return kk
+    except:
+        print('e')
+        return []
 
+    
 while True:
     jsonVals=callAPI()
     # print(len(jsonVals))
     #print(jsonVals[0])
+    dF=readDownloadedFiles()
+    print(dF)
     for i in range(0,len(jsonVals)):
-        if('default' in jsonVals[i]['fileName']):
-            fileDownload('media/default',jsonVals[i]['url'])
+        if((jsonVals[i]['fileName']+','+jsonVals[i]['url']) in dF):
+            doNothing=1
+        else:
+            createDownloadedFilesList(jsonVals[i]['fileName'],jsonVals[i]['url'])
+            fileDownload('media/'+jsonVals[i]['fileName'],jsonVals[i]['url'])
+      
+        # if('default' in jsonVals[i]['fileName']):
+        #     fileDownload('media/default',jsonVals[i]['url'])
             
 
-    time.sleep(10)
+    time.sleep(5)
