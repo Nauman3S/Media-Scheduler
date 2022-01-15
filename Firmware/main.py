@@ -39,10 +39,10 @@ def callAPI():
     # from url in data
     data_json = json.loads(response.read())
     return data_json
-def createDownloadedFilesList(fN, id):
+def createDownloadedFilesList(fN, id,tm,sec):
     print('updating list of files')
     k=open('filesList.txt','a')
-    k.write(fN+','+id+'\n')
+    k.write(fN+','+id+','+tm+','+sec+'\n')
     k.close()
     print('updated list of files')
 def readDownloadedFiles():
@@ -64,22 +64,16 @@ if(default_image_exists):
 
 while True:
     jsonVals=callAPI()
-    # print(len(jsonVals))
-    #print(jsonVals[0])
     dF=readDownloadedFiles()
     print(dF)
     for i in range(0,len(jsonVals)):
-        if((jsonVals[i]['fileName']+','+jsonVals[i]['url']) in dF):
+        if((jsonVals[i]['fileName']+','+jsonVals[i]['url']+','+jsonVals[i]['time']+','+jsonVals[i]['sec']) in dF):
             doNothing=1
         else:
-            createDownloadedFilesList(jsonVals[i]['fileName'],jsonVals[i]['url'])
+            createDownloadedFilesList(jsonVals[i]['fileName'],jsonVals[i]['url'],jsonVals[i]['time'],jsonVals[i]['sec'])
             fileDownload('media/'+jsonVals[i]['fileName'],jsonVals[i]['url'])
             if('default' in jsonVals[i]['fileName']):
                 openDefaultImage()
-
-      
-        # if('default' in jsonVals[i]['fileName']):
-        #     fileDownload('media/default',jsonVals[i]['url'])
             
 
     time.sleep(5)
