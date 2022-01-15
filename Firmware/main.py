@@ -80,9 +80,16 @@ def scheduler(config):
                 if(str(jsonVals[i]['time'])==getTimeNow()):
                     print('running', jsonVals[i]['fileName'],' for seconds',jsonVals[i]['sec'])
                     if('png' in jsonVals[i]['fileName'] or 'jpg' in jsonVals[i]['fileName']):
-                        openImage(jsonVals[i]['fileName'])
                         sleepTime=int(jsonVals[i]['sec'])
-                        time.sleep(sleepTime+1.5)
+                        openImage(jsonVals[i]['fileName'],str(sleepTime))
+                        sleepTime=int(jsonVals[i]['sec'])
+                        print('sleeping for ',str(sleepTime+3))
+                        
+                        time.sleep(sleepTime+3)
+                    elif('avi' in jsonVals[i]['fileName'] or 'mp4' in jsonVals[i]['fileName']):
+                        playVideo(jsonVals[i]['fileName'])
+                        time.sleep(4)
+
 
 t1 = threading.Thread(target=scheduler, args=(10,))
 t1.start()
