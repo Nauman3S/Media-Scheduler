@@ -83,9 +83,10 @@ A step by step series that tell you how to get the Firmware and Backend running
   13. Then SSH into the Raspberry Pi which you can using the command ``ssh pi@raspberrypi.local``
   14. Once you are logged in, execute the following commands
   15. ```sudo apt install ufw```
-  16. ```sudo ufw allow 22; sudo ufw allow 80; sudo ufw allow 443```
-  17. ```sudo ufw enable```
-  18. Now restart both Raspberry Pi
+  16. ```sudo apt install feh```
+  17. ```sudo ufw allow 22; sudo ufw allow 80; sudo ufw allow 443```
+  18. ```sudo ufw enable```
+  19. Now restart both Raspberry Pi
 
 
 
