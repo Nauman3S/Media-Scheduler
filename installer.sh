@@ -51,11 +51,11 @@ fi
 
 File="/etc/rc.local"
 
-if [[ $(grep "(sleep 8; sh /home/pi/Media-Scheduler/starter.sh)&" $File) ]] ; then
+if [[ $(grep "(sleep 8; sh /home/pi/Media-Scheduler/Firmware/starter.sh)&" $File) ]] ; then
     echo "Found startup script. Doing nothing."
 else
     echo "Not Found. Adding startup script"
-    sed -i -e '$i \(sleep 8; sh /home/pi/Media-Scheduler/starter.sh)&\n' /etc/rc.local
+    sed -i -e '$i \(sleep 8; sh /home/pi/Media-Scheduler/Firmware/starter.sh)&\n' /etc/rc.local
 fi
 
 

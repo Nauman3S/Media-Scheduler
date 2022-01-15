@@ -14,12 +14,25 @@ import time
 import datetime
 from os.path import exists
 from filesHandler import *
+from gpiozero import Button
 
-
-
-  
 # import json
 import json
+
+consoleState=0
+def consoleHandle():
+    global consoleState
+    print("Console Handler")
+    if(consoleState==0):
+        print('opening')
+        openTerminal()
+        consoleState=1
+    elif(consoleState==1):
+        consoleState=0
+
+button = Button(23)
+
+button.when_pressed = consoleHandle
 # store the URL in url as
 # parameter for urlopen
 jsonVals=None

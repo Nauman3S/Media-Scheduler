@@ -28,3 +28,6 @@ def openImage(fileName,sleepTime):
 def playVideo(fileName):
     if(isVideoRunning()==False):
         os.system('(DISPLAY=:0 cvlc -I dummy --fullscreen --no-video-deco --no-embedded-video --no-osd --no-video-title --width=1920 --height=1080 --video-x=0 --video-y=-10 --play-and-exit --no-video-on-top media/' + fileName+ '  2> /dev/null) &')
+    
+def openTerminal():
+    os.system('lxterminal')

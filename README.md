@@ -75,27 +75,54 @@ A step by step series that tell you how to get the Firmware and Backend running
   8.  That’s it. It should be flashed within a few minutes.
   9.  Download this repository and open the configFiles folder of the repository and open wpa_supplicant.conf file and add your WiFi credentials in it.
 
-####  Firmware Installation
+####  Firmware Configuration
 
   10. Once done, remove the SD Card and re-insert it into your PC/Laptop and then open the "boot" volume. Copy the files of "configFiles" folder here in the "boot" volume. Also create an empty file named "ssh" in the "boot" volume if not already present.
   11. Do the same steps for 2nd SD Card as well.
   12. Then put the SD Card in the first Raspberry Pi Zero and power it on.
   13. Then SSH into the Raspberry Pi which you can using the command ``ssh pi@raspberrypi.local``
-  14. Once you are logged in, execute the following commands
-  15. ```sudo apt install ufw```
-  16. ```sudo apt install feh```
-  17. ```sudo ufw allow 22; sudo ufw allow 80; sudo ufw allow 443```
-  18. ```sudo ufw enable```
-#### Auto Installer
-To install and Run RPi Client Automatically just run the following command on your Raspberry Pi terminal
+  14. Once you are logged in, execute the following command
+#### Auto Firmware Installer
+To install and Run Media Scheduler Automatically just run the following command on your Raspberry Pi terminal
 
-- ```curl -sSL  https://raw.githubusercontent.com/Nauman3S/WatchmanService/main/installer.sh  | bash```
+- ```curl -sSL  https://raw.githubusercontent.com/Nauman3S/Media-Scheduler/main/Firmware/starter.sh  | bash```
 
 After the installer completes the process restart your raspberry pi.
 
+####  Disabling Raspberry Pi Boot Messages
+
+1.  Execute the following command
+
+-   ```sudo nano /boot/cmdline.txt```
+
+2.  Change the console from tty1 to
+
+    ```console=tty3 ```
+
+3.  Add this to the end of the line. `loglevel=0` removes most of the messages from the boot and put the following line at the end 
+
+``quiet splash loglevel=0 logo.nologo vt.global_cursor_default=0``
+
+4.  Press CTRL+O and CTRL+X to save and exit.
+5.  ```sudo nano /etc/rc.local```
+6.  Add this before 'exit 0':
+7.  Press CTRL+O and CTRL+X to save and exit.
+
+-   ``dmesg --console-off``
+7.  Execute the following command
+-   ```sudo update-rc.d motd remove```
+8.  ```sudo nano /boot/config.txt```
+9.  Add the following line at the end of the file
+-   ``disable_splash=1``
+10. Press CTRL+O and CTRL+X to save and exit.
+11.   ``sudo nano /boot/cmdline.txt``
+12.  Add below line to end of file
+-   ``logo.nologo``
+13.  Press CTRL+O and CTRL+X to save and exit.
+14.  ``sudo reboot``
 
 
-
+Following these 14 steps will remove all unwanted boot logs messages and raspberry pi logo/splash screens.
 ## Circuit <a name = "circuit"></a>
 
 #### Raspberry Pi Pinout
@@ -141,9 +168,10 @@ Backend Link: https://mediascheduler-backend.production.rehanshakir.com/api/fiel
 
 1.  Upload the code to your Raspberry Pi as mentioned in the [Installlation](#installation) section above.
 2.  Now connect the circuit components as mentioned in [Circuit](#circuit) section above.
-3.  Open terminal and SSH into both Raspberry Pis in different terminals.
-4.  ``ssh pi@raspberrypi1.local`` while the password is 'pi'
-5.  Open ```/home/pi/Firmware/Receiver/main.py```
+3.  Power on your raspberry pi.
+4.  Use the webapp dashboard to upload new videos/pictures.
+5.  To set a default picture, upload a image file named `default.png` and it will be automatically used as a default image.
+6.  Press the push button to open the terminal.
 
 
 ## List of Components <a name = "list"></a>
