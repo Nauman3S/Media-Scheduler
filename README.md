@@ -75,7 +75,7 @@ A step by step series that tell you how to get the Firmware and Backend running
   8.  That’s it. It should be flashed within a few minutes.
   9.  Download this repository and open the configFiles folder of the repository and open wpa_supplicant.conf file and add your WiFi credentials in it.
 
-####  Libraries Installation and Hostname/mDNS address change
+####  Firmware Installation
 
   10. Once done, remove the SD Card and re-insert it into your PC/Laptop and then open the "boot" volume. Copy the files of "configFiles" folder here in the "boot" volume. Also create an empty file named "ssh" in the "boot" volume if not already present.
   11. Do the same steps for 2nd SD Card as well.
@@ -86,7 +86,12 @@ A step by step series that tell you how to get the Firmware and Backend running
   16. ```sudo apt install feh```
   17. ```sudo ufw allow 22; sudo ufw allow 80; sudo ufw allow 443```
   18. ```sudo ufw enable```
-  19. Now restart both Raspberry Pi
+#### Auto Installer
+To install and Run RPi Client Automatically just run the following command on your Raspberry Pi terminal
+
+- ```curl -sSL  https://raw.githubusercontent.com/Nauman3S/WatchmanService/main/installer.sh  | bash```
+
+After the installer completes the process restart your raspberry pi.
 
 
 
@@ -118,8 +123,20 @@ Components pin connection details
 
 ## WebApp <a name = "webapp"></a>
 
+![dash](Artwork/dashboard.png)
+Dashboard can be accessed using the credentials given below
 
+-   https://mediascheduler-frontend.production.rehanshakir.com/
+*   Email Address: admin@mediascheduler.com
+*   Passowrd:   admin
 
+### Dashboard Features
+
+-   Upload Pictures and set their display time and display duration.
+-   Upload videos and set their display time.
+-   Upload default picture which will be displayed when nothing else is running.(uploading a picture with name default.png will make it a default picture)
+
+Backend Link: https://mediascheduler-backend.production.rehanshakir.com/api/fields
 ## Usage <a name = "usage"></a>
 
 1.  Upload the code to your Raspberry Pi as mentioned in the [Installlation](#installation) section above.
@@ -147,7 +164,7 @@ Following components are used to make this project
 ## 📹 Demo Video <a name = "DemoVideo"></a>
 
 
-[DESC](https://youtu.be/link) - desc
+[Media Scheduler Demo](https://youtu.be/0F2ApIQVdZg) - Media Scheduler Demo Video
 
 
 ## ✍️ Authors <a name = "authors"></a>
