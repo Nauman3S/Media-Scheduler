@@ -4,9 +4,16 @@
  #DISPLAY=:0 feh -x -F -Y rpiImager.png
  #no borders fullscreen no pointer
 
+ #DISPLAY=:0 feh default.png & sleep 5 ; kill $!
+ #display and kill after 5 seconds
+
 from urllib.request import urlopen
 import requests
 import time
+from os.path import exists
+from filesHandler import *
+
+
   
 # import json
 import json
@@ -49,7 +56,12 @@ def readDownloadedFiles():
         print('e')
         return []
 
-    
+
+default_image_exists = exists('media/default.png')
+if(default_image_exists):
+    openDefaultImage()
+
+
 while True:
     jsonVals=callAPI()
     # print(len(jsonVals))
@@ -62,6 +74,9 @@ while True:
         else:
             createDownloadedFilesList(jsonVals[i]['fileName'],jsonVals[i]['url'])
             fileDownload('media/'+jsonVals[i]['fileName'],jsonVals[i]['url'])
+            if('default' in jsonVals[i]['fileName']):
+                openDefaultImage()
+
       
         # if('default' in jsonVals[i]['fileName']):
         #     fileDownload('media/default',jsonVals[i]['url'])
