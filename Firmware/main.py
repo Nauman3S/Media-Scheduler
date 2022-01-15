@@ -9,9 +9,12 @@
 
 from urllib.request import urlopen
 import requests
+import threading
 import time
+import datetime
 from os.path import exists
 from filesHandler import *
+
 
 
   
@@ -61,7 +64,28 @@ default_image_exists = exists('media/default.png')
 if(default_image_exists):
     openDefaultImage()
 
+def getTimeNow():#24 hours format
+    today = datetime.datetime.now()
+    date_time = today.strftime("%H:%M")
+    return str(date_time)
 
+def scheduler(config):
+    global jsonVals
+    sleepTime=0
+    while True:
+        if(type(jsonVals)!=type(None)):
+            
+            for i in range (0,len(jsonVals)):
+                # print(str(jsonVals[i]['time']),'   ',getTimeNow())
+                if(str(jsonVals[i]['time'])==getTimeNow()):
+                    print('running', jsonVals[i]['fileName'],' for seconds',jsonVals[i]['sec'])
+                    if('png' in jsonVals[i]['fileName'] or 'jpg' in jsonVals[i]['fileName']):
+                        openImage(jsonVals[i]['fileName'])
+                        sleepTime=int(jsonVals[i]['sec'])
+                        time.sleep(sleepTime+1.5)
+
+t1 = threading.Thread(target=scheduler, args=(10,))
+t1.start()
 while True:
     jsonVals=callAPI()
     dF=readDownloadedFiles()
