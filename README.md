@@ -89,6 +89,10 @@ To install and Run Media Scheduler Automatically just run the following command 
 
 After the installer completes the process restart your raspberry pi.
 
+#### Running the Firmware
+
+* DISPLAY=:0 /home/pi/Media-Scheduler/Firmware/starter.sh
+
 ####  Disabling Raspberry Pi Boot Messages
 
 1.  Execute the following command
