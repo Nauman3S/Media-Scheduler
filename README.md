@@ -85,7 +85,7 @@ A step by step series that tell you how to get the Firmware and Backend running
 #### Auto Firmware Installer
 To install and Run Media Scheduler Automatically just run the following command on your Raspberry Pi terminal
 
-- ```curl -sSL  https://raw.githubusercontent.com/Nauman3S/Media-Scheduler/main/Firmware/starter.sh  | bash```
+- ```curl -sSL  https://raw.githubusercontent.com/Nauman3S/Media-Scheduler/main/installer.sh  | bash```
 
 After the installer completes the process restart your raspberry pi.
 
