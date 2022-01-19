@@ -50,7 +50,7 @@ else
 fi
 sudo apt install feh -y
 sudo apt install vlc -y
-
+sudo chmod a+rx /home/pi/Media-Scheduler/Firmware/starter.sh
 # File="/etc/rc.local"
 
 # if [[ $(grep "(sleep 8; sh /home/pi/Media-Scheduler/Firmware/starter.sh)&" $File) ]] ; then
