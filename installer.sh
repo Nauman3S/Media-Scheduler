@@ -48,6 +48,8 @@ else
     echo "Error: Directory RPiClient does not exists."
     mkdir $HOME/Media-Scheduler/logs
 fi
+sudo apt install feh -y
+sudo apt install vlc -y
 
 File="/etc/rc.local"
 
