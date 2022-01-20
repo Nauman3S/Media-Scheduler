@@ -4,7 +4,7 @@
 set -e
 
 echo "Media Scheduler Installer"
-echo "*****RUN THIS SCRIPT AS A ROOT USER*****"
+# echo "*****RUN THIS SCRIPT AS A ROOT USER*****"
 echo "This script will:"
 echo "Clone and Install the Media Scheduler"
 echo "Put the Media Scheduler in the startup sequence of the raspberry pi"
@@ -51,14 +51,14 @@ fi
 sudo apt install feh -y
 sudo apt install vlc -y
 sudo chmod a+rx /home/pi/Media-Scheduler/Firmware/starter.sh
-# File="/etc/rc.local"
+File="/etc/xdg/lxsession/LXDE-pi/autostart"
 
-# if [[ $(grep "(sleep 8; sh /home/pi/Media-Scheduler/Firmware/starter.sh)&" $File) ]] ; then
-#     echo "Found startup script. Doing nothing."
-# else
-#     echo "Not Found. Adding startup script"
-#     sed -i -e '$i \(sleep 8; sh /home/pi/Media-Scheduler/Firmware/starter.sh)&\n' /etc/rc.local
-# fi
+if [[ $(grep "@bash /home/pi/Media-Scheduler/Firmware/starter.sh &" $File) ]] ; then
+    echo "Found startup script. Doing nothing."
+else
+    echo "Not Found. Adding startup script"
+    sed -i -e '$i \@bash /home/pi/Media-Scheduler/Firmware/starter.sh &\n' /etc/xdg/lxsession/LXDE-pi/autostart
+fi
 
 
 

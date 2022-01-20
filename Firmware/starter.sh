@@ -17,4 +17,5 @@ done
 sleep 2
 # DISPLAY=:0 python3 main.py
 # (DISPLAY=:0 /usr/bin/python3 /home/pi/Media-Scheduler/Firmware/main.py >/home/pi/Media-Scheduler/Firmware/main_logs.txt 2>&1)
-DISPLAY=:0 python3 main.py
+cd /home/pi/Media-Scheduler/Firmware
+DISPLAY=:0 python3 main.py > /home/pi/Media-Scheduler/Firmware/main_logs.txt 2>&1
