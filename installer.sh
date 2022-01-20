@@ -32,7 +32,7 @@ if [ -d "$HOME/Media-Scheduler" ]
 then
     echo "Directory Media-Scheduler exists."
 else
-    echo "Error: Directory RPiClient does not exists."
+    echo "Error: Directory Media-Scheduler does not exists."
     cd $HOME
     # mkdir ~/RPiClient
     git clone \
@@ -57,7 +57,7 @@ if [[ $(grep "@bash /home/pi/Media-Scheduler/Firmware/starter.sh &" $File) ]] ; 
     echo "Found startup script. Doing nothing."
 else
     echo "Not Found. Adding startup script"
-    sed -i -e '$i \@bash /home/pi/Media-Scheduler/Firmware/starter.sh &\n' /etc/xdg/lxsession/LXDE-pi/autostart
+    sudo sed -i -e '$i \@bash /home/pi/Media-Scheduler/Firmware/starter.sh &\n' /etc/xdg/lxsession/LXDE-pi/autostart
 fi
 
 
